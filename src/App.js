@@ -41,8 +41,8 @@ class App {
     InputView.inputPairData((input) => {
       try {
         verify.pairData(input);
-        const inputData = input.split(',');
-        return this.pairMatching(inputData[0], inputData[2]);
+        const inputData = input.split(',').map((value) => value.trim());
+        return this.isMatched(inputData[0], inputData[2]);
       } catch (error) {
         OutputView.ErrorPairData();
         this.pairInput();
@@ -52,11 +52,18 @@ class App {
 
   isMatched(type, mission) {
     if (type === WORDS.FRONTEND) {
-      if (this.#frontend.pairMatching(mission)) return this.reMatchCheck(type, mission);
+      if (!this.#frontend.hasData(mission)) return this.reMatchCheck(type, mission);
     }
     if (type === WORDS.BACKEND) {
-      if (this.#backend.pairMatching(mission)) return this.reMatchCheck(type, mission);
+      if (!this.#backend.hasData(mission)) return this.reMatchCheck(type, mission);
     }
+    return this.pairMatch(type, mission);
+  }
+
+  pairMatch(type, mission) {
+    if (type === WORDS.FRONTEND) this.#frontend.pairMatching(mission);
+    if (type === WORDS.BACKEND) this.#backend.pairMatching(mission);
+    return this.printPairMatchResult();
   }
 
   reMatchCheck(type, mission) {
@@ -75,6 +82,7 @@ class App {
   }
 
   printPairMatchResult() {}
+
   // 페어 조회 기능들
   pairPrint() {}
 

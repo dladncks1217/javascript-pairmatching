@@ -1,4 +1,5 @@
 const { LEVEL_DATA } = require('../constants/levelData');
+const shuffleData = require('../utils/shuffleData');
 
 class FrontEnd {
   #users;
@@ -22,7 +23,21 @@ class FrontEnd {
     return false;
   }
 
-  pairMatching(name) {}
+  pairMatching(name) {
+    const students = [];
+    let temp = [];
+    const datas = shuffleData(this.#users.slice());
+    datas.forEach((value, index) => {
+      temp.push(value);
+      if (index !== 0 && index % 2 === 0) {
+        students.push(temp.slice());
+        temp = [];
+      }
+    });
+    this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] = students.slice();
+    console.log(students);
+    return students;
+  }
 }
 
 module.exports = FrontEnd;
