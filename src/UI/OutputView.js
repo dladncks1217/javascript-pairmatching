@@ -23,6 +23,10 @@ const OutputView = {
   ErrorPairData() {
     Console.print(ERROR.WRONG_PAIR_DATA);
   },
+
+  ErrorRematchInput() {
+    Console.print(ERROR.REMATCH_INPUT);
+  },
 };
 
 module.exports = OutputView;

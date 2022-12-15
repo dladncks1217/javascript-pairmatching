@@ -9,6 +9,10 @@ const InputView = {
   inputPairData(callback) {
     Console.readLine(INPUT.PAIR_INPUT + '\n', callback);
   },
+
+  reMatchCheck(callback) {
+    Console.readLine(INPUT.REMATCH + '\n', callback);
+  },
 };
 
 module.exports = InputView;

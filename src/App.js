@@ -1,4 +1,4 @@
-const { USER_LINK } = require('./constants/constants');
+const { USER_LINK, WORDS } = require('./constants/constants');
 const BackEnd = require('./domain/Backend');
 const FrontEnd = require('./domain/Frontend');
 const InputView = require('./UI/InputView');
@@ -24,7 +24,7 @@ class App {
     InputView.userSelect((input) => {
       try {
         verify.inputTypeNumberOrQ(input);
-        if (input === '1') this.pairMatching();
+        if (input === '1') this.pairInput();
         if (input === '2') this.pairPrint();
         if (input === '3') this.pairClear();
         if (input.toUpperCase() === 'Q') this.quitGame();
@@ -40,8 +40,9 @@ class App {
     OutputView.matchMenu();
     InputView.inputPairData((input) => {
       try {
-        verify.pairData();
-        // 페어매칭 시작
+        verify.pairData(input);
+        const inputData = input.split(',');
+        return this.pairMatching(inputData[0], inputData[2]);
       } catch (error) {
         OutputView.ErrorPairData();
         this.pairInput();
@@ -49,6 +50,31 @@ class App {
     });
   }
 
+  isMatched(type, mission) {
+    if (type === WORDS.FRONTEND) {
+      if (this.#frontend.pairMatching(mission)) return this.reMatchCheck(type, mission);
+    }
+    if (type === WORDS.BACKEND) {
+      if (this.#backend.pairMatching(mission)) return this.reMatchCheck(type, mission);
+    }
+  }
+
+  reMatchCheck(type, mission) {
+    InputView.reMatchCheck((input) => {
+      try {
+        verify.rematchInput();
+        if (input === WORDS.YES && type === WORDS.FRONTEND) this.#frontend.pairMatching(mission);
+        if (input === WORDS.YES && type === WORDS.BACKEND) this.#backend.pairMatching(mission);
+        if (input === WORDS.NO) return this.getUserInputMenu();
+        return this.printPairMatchResult();
+      } catch (error) {
+        OutputView.ErrorRematchInput();
+        return this.reMatchCheck();
+      }
+    });
+  }
+
+  printPairMatchResult() {}
   // 페어 조회 기능들
   pairPrint() {}
 
