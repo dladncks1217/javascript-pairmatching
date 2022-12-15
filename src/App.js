@@ -1,7 +1,9 @@
+const { USER_LINK } = require('./constants/constants');
 const BackEnd = require('./domain/Backend');
 const FrontEnd = require('./domain/Frontend');
 const InputView = require('./UI/InputView');
 const OutputView = require('./UI/OutputView');
+const getUserList = require('./utils/getUserList');
 const verify = require('./utils/verify');
 
 class App {
@@ -14,8 +16,8 @@ class App {
   }
 
   initData() {
-    this.#frontend = new FrontEnd();
-    this.#backend = new BackEnd();
+    this.#frontend = new FrontEnd(getUserList, USER_LINK.FRONT);
+    this.#backend = new BackEnd(getUserList, USER_LINK.BACK);
   }
 
   getUserInputMenu() {
