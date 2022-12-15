@@ -6,10 +6,6 @@ const OutputView = {
     Console.print(MESSAGE.USER_SELECT);
   },
 
-  matchMenu() {
-    Console.print(MESSAGE.MATCH_MENU);
-  },
-
   pairMatchResult(students) {
     students.sort((a, b) => a.length - b.length);
     let result = '';

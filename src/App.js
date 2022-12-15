@@ -37,7 +37,6 @@ class App {
 
   // 페어 매칭 기능들
   pairInput() {
-    OutputView.matchMenu();
     InputView.inputPairData((input) => {
       try {
         verify.pairData(input);
