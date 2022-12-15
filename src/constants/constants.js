@@ -19,6 +19,11 @@ Q. 종료
   `,
 });
 
+const USER_LINK = Object.freeze({
+  FRONT: '../resources/frontend-crew.md',
+  BACK: '../resources/backend-crew.md',
+});
+
 const ERROR = Object.freeze({
   WRONG_SELECT: '[ERROR] 잘못된 기능 선택입니다.',
 });
@@ -27,4 +32,4 @@ const INPUT = Object.freeze({
   //
 });
 
-module.exports = { MESSAGE, ERROR, INPUT };
+module.exports = { MESSAGE, ERROR, INPUT, USER_LINK };
