@@ -1,12 +1,9 @@
-const { ERROR } = require('../constants/constants');
+const { ERROR } = require('../constants/constants.js');
 
 const verify = {
-  inputTypeNumber(input) {
-    // if (Number.isNaN(Number(input))) throw new Error(ERROR.EXAMPLE);
-    if (Number.isNaN(Number(input))) throw new Error();
+  inputTypeNumberOrQ(input) {
+    if (input.toUpperCase() !== 'Q' && Number.isNaN(Number(input))) throw new Error();
   },
-
-  //
 };
 
 module.exports = verify;
