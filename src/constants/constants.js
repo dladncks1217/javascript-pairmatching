@@ -1,5 +1,5 @@
 const MESSAGE = Object.freeze({
-  GAME_START: `
+  MATCH_MENU: `
 #############################################
 과정: 백엔드 | 프론트엔드
 미션:
@@ -9,12 +9,18 @@ const MESSAGE = Object.freeze({
   - 레벨4: 성능개선 | 배포
   - 레벨5:
 ############################################
-과정, 레벨, 미션을 선택하세요.
 `,
+  USER_SELECT: `
+기능을 선택하세요.
+1. 페어 매칭
+2. 페어 조회
+3. 페어 초기화
+Q. 종료
+  `,
 });
 
 const ERROR = Object.freeze({
-  EXAMPLE: '[ERROR]',
+  WRONG_SELECT: '[ERROR] 잘못된 기능 선택입니다.',
 });
 
 const INPUT = Object.freeze({
