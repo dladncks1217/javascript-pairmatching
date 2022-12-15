@@ -55,7 +55,7 @@ class App {
       if (!this.#frontend.hasData(mission)) return this.reMatchCheck(type, mission);
     }
     if (type === WORDS.BACKEND) {
-      if (!this.#backend.hasData(mission)) return this.reMatchCheck(type, mission);
+      if (!this.#backend.hasData(mission)) return this.reMatchCheck(type, mission, '');
     }
     return this.pairMatch(type, mission);
   }
@@ -68,15 +68,12 @@ class App {
     return this.printPairMatchResult(result);
   }
 
-  reMatchCheck(type, mission) {
+  reMatchCheck(type, mission, result) {
     InputView.reMatchCheck((input) => {
       try {
         verify.rematchInput(input);
-        let result;
-        if (input === WORDS.YES && type === WORDS.FRONTEND)
-          result = this.#frontend.pairMatching(mission);
-        if (input === WORDS.YES && type === WORDS.BACKEND)
-          result = this.#backend.pairMatching(mission);
+        if (input === WORDS.YES && type === WORDS.FRONTEND) result = this.#frontend.pairMatching(mission);
+        if (input === WORDS.YES && type === WORDS.BACKEND) result = this.#backend.pairMatching(mission);
         if (input === WORDS.NO) return this.getUserInputMenu();
         return this.printPairMatchResult(result);
       } catch (error) {
@@ -102,7 +99,11 @@ class App {
   }
 
   // 페어 초기화 기능들
-  pairClear() {}
+  pairClear() {
+    this.#frontend = new FrontEnd(getUserList, USER_LINK.FRONT);
+    this.#backend = new BackEnd(getUserList, USER_LINK.BACK);
+    return this.getUserInputMenu();
+  }
 
   // 게임 종료 기능
   quitGame() {
