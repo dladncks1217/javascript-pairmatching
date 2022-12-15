@@ -2,8 +2,12 @@ const { Console } = require('@woowacourse/mission-utils');
 const { MESSAGE, ERROR } = require('../constants/constants');
 
 const OutputView = {
-  gameStart() {
-    Console.print(MESSAGE.GAME_START);
+  userSelect() {
+    Console.print(MESSAGE.USER_SELECT);
+  },
+
+  matchMenu() {
+    Console.print(MESSAGE.MATCH_MENU);
   },
 
   gameSetting() {},

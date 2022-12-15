@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('./constants/constants');
+const { MESSAGE } = require('../constants/constants');
 
 const InputView = {
   userSelect(callback) {

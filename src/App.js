@@ -9,7 +9,8 @@ class App {
   #backend;
 
   play() {
-    return this.initData();
+    this.initData();
+    return this.getUserInputMenu();
   }
 
   initData() {
@@ -17,19 +18,14 @@ class App {
     this.#backend = new BackEnd();
   }
 
-  showInputMenu() {
-    OutputView.gameStart();
-    return this.getUserInputMenu();
-  }
-
   getUserInputMenu() {
     InputView.userSelect((input) => {
       try {
-        verify.inputTypeNumberOrQ();
+        verify.inputTypeNumberOrQ(input);
         if (input === '1') this.pairMatching();
         if (input === '2') this.pairPrint();
         if (input === '3') this.pairClear();
-        if (input === 'Q') this.quitGame();
+        if (input.toUpperCase() === 'Q') this.quitGame();
       } catch (error) {
         OutputView.ErrorSelect();
         return this.getUserInputMenu();
@@ -37,12 +33,18 @@ class App {
     });
   }
 
-  pairMatching() {}
+  // 페어 매칭 기능들
+  pairMatching() {
+    OutputView.matchMenu();
+  }
 
+  // 페어 조회 기능들
   pairPrint() {}
 
+  // 페어 초기화 기능들
   pairClear() {}
 
+  // 게임 종료 기능
   quitGame() {
     OutputView.gameQuit();
   }
