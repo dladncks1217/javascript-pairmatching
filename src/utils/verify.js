@@ -12,7 +12,7 @@ const verify = {
   },
 
   rematchInput(input) {
-    if (input === WORDS.YES || input === WORDS.NO) throw new Error();
+    if (input !== WORDS.YES && input !== WORDS.NO) throw new Error();
   },
 };
 

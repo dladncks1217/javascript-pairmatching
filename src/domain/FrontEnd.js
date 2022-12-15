@@ -37,6 +37,10 @@ class FrontEnd {
     this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] = students.slice();
     return students.slice();
   }
+
+  printResult(name) {
+    return this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]];
+  }
 }
 
 module.exports = FrontEnd;

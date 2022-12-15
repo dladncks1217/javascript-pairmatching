@@ -6,6 +6,7 @@ const MESSAGE = Object.freeze({
 3. 페어 초기화
 Q. 종료
   `,
+  NO_DATA: '매칭 기록이 없습니다!',
 });
 
 const USER_LINK = Object.freeze({

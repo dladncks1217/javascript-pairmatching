@@ -16,6 +16,10 @@ const OutputView = {
     Console.print(result);
   },
 
+  pairMatchNoData() {
+    Console.print(MESSAGE.NO_DATA);
+  },
+
   gameSetting() {},
 
   gameQuit() {

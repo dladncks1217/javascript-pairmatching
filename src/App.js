@@ -24,8 +24,8 @@ class App {
     InputView.userSelect((input) => {
       try {
         verify.inputTypeNumberOrQ(input);
-        if (input === '1') this.pairInput();
-        if (input === '2') this.pairPrint();
+        if (input === '1') this.pairInput(input);
+        if (input === '2') this.pairInput(input);
         if (input === '3') this.pairClear();
         if (input.toUpperCase() === 'Q') this.quitGame();
       } catch (error) {
@@ -36,12 +36,13 @@ class App {
   }
 
   // 페어 매칭 기능들
-  pairInput() {
+  pairInput(number) {
     InputView.inputPairData((input) => {
       try {
         verify.pairData(input);
         const inputData = input.split(',').map((value) => value.trim());
-        return this.isMatched(inputData[0], inputData[2]);
+        if (number === '1') return this.isMatched(inputData[0], inputData[2]);
+        if (number === '2') return this.pairPrint(inputData[0], inputData[2]);
       } catch (error) {
         OutputView.ErrorPairData();
         this.pairInput();
@@ -70,11 +71,14 @@ class App {
   reMatchCheck(type, mission) {
     InputView.reMatchCheck((input) => {
       try {
-        verify.rematchInput();
-        if (input === WORDS.YES && type === WORDS.FRONTEND) this.#frontend.pairMatching(mission);
-        if (input === WORDS.YES && type === WORDS.BACKEND) this.#backend.pairMatching(mission);
+        verify.rematchInput(input);
+        let result;
+        if (input === WORDS.YES && type === WORDS.FRONTEND)
+          result = this.#frontend.pairMatching(mission);
+        if (input === WORDS.YES && type === WORDS.BACKEND)
+          result = this.#backend.pairMatching(mission);
         if (input === WORDS.NO) return this.getUserInputMenu();
-        return this.printPairMatchResult();
+        return this.printPairMatchResult(result);
       } catch (error) {
         OutputView.ErrorRematchInput();
         return this.reMatchCheck();
@@ -88,7 +92,14 @@ class App {
   }
 
   // 페어 조회 기능들
-  pairPrint() {}
+  pairPrint(type, mission) {
+    let data;
+    if (type === WORDS.FRONTEND) data = this.#frontend.printResult(mission);
+    if (type === WORDS.BACKEND) data = this.#backend.printResult(mission);
+    if (data !== 0) OutputView.pairMatchResult(data);
+    if (data === 0) OutputView.pairMatchNoData();
+    return this.getUserInputMenu();
+  }
 
   // 페어 초기화 기능들
   pairClear() {}
