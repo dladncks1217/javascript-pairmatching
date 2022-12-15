@@ -23,10 +23,10 @@ class FrontEnd {
     return true;
   }
 
-  pairMatching(name) {
+  pairMatching(name, shuffle) {
     const students = [];
     let temp = [];
-    const datas = shuffleData(this.#users.slice());
+    const datas = shuffle(this.#users.slice());
     datas.forEach((value, index) => {
       temp.push(value);
       if (index !== 0 && index % 2 === 0) {

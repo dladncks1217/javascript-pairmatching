@@ -4,6 +4,7 @@ const FrontEnd = require('./domain/Frontend');
 const InputView = require('./UI/InputView');
 const OutputView = require('./UI/OutputView');
 const getUserList = require('./utils/getUserList');
+const shuffleData = require('./utils/shuffleData');
 const verify = require('./utils/verify');
 
 class App {
@@ -62,8 +63,8 @@ class App {
 
   pairMatch(type, mission) {
     let result;
-    if (type === WORDS.FRONTEND) result = this.#frontend.pairMatching(mission);
-    if (type === WORDS.BACKEND) result = this.#backend.pairMatching(mission);
+    if (type === WORDS.FRONTEND) result = this.#frontend.pairMatching(mission, shuffleData);
+    if (type === WORDS.BACKEND) result = this.#backend.pairMatching(mission, shuffleData);
 
     return this.printPairMatchResult(result);
   }
@@ -72,8 +73,10 @@ class App {
     InputView.reMatchCheck((input) => {
       try {
         verify.rematchInput(input);
-        if (input === WORDS.YES && type === WORDS.FRONTEND) result = this.#frontend.pairMatching(mission);
-        if (input === WORDS.YES && type === WORDS.BACKEND) result = this.#backend.pairMatching(mission);
+        if (input === WORDS.YES && type === WORDS.FRONTEND)
+          result = this.#frontend.pairMatching(mission, shuffleData);
+        if (input === WORDS.YES && type === WORDS.BACKEND)
+          result = this.#backend.pairMatching(mission, shuffleData);
         if (input === WORDS.NO) return this.getUserInputMenu();
         return this.printPairMatchResult(result);
       } catch (error) {
