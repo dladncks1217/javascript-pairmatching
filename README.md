@@ -33,7 +33,7 @@
 - 페어 매칭 구현 방법
 
 ```
-- 크루들의 이름 목록을 List<String> 형태로 준비한다.
+- 크루들의 이름 목록을 배열 형태로 준비한다.
 - 크루 목록의 순서를 랜덤으로 섞는다. 이 때 `Missionutils.Randoms`의 shuffle 메서드를 활용해야 한다.
 - 랜덤으로 섞인 페어 목록에서 페어 매칭을 할 때 앞에서부터 순서대로 두명씩 페어를 맺는다.
 - 홀수인 경우 마지막 남은 크루는 마지막 페어에 포함시킨다.
@@ -44,8 +44,8 @@
 ```java
 > 코드 예시
 
-List<String> crewNames; // 파일에서 로드한 크루 이름 목록
-List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
+const crewNames = []; // 파일에서 로드한 크루 이름 목록
+const shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
 
 // 페어 매칭 & 검증
 
@@ -295,7 +295,7 @@ Q
 - Node.js 14 버전에서 실행 가능해야 한다. **Node.js 14에서 정상적으로 동작하지 않을 경우 0점 처리한다.**
 - 프로그램 실행의 시작점은 `App.js`의 `play` 메서드이다. 아래와 같이 프로그램을 실행시킬 수 있어야 한다.
 - JS 코드 컨벤션을 지키면서 프로그래밍한다.
-  - https://naver.github.io/hackday-conventions-java
+  - https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
   - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
   - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
