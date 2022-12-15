@@ -36,7 +36,7 @@ class FrontEnd {
     });
     this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] = students.slice();
     console.log(students);
-    return students;
+    return students.slice();
   }
 }
 

@@ -10,6 +10,16 @@ const OutputView = {
     Console.print(MESSAGE.MATCH_MENU);
   },
 
+  pairMatchResult(students) {
+    students.sort((a, b) => a.length - b.length);
+    let result = '';
+    students.forEach((value) => {
+      value = value.join(' : ');
+      result += value + '\n';
+    });
+    Console.print(result);
+  },
+
   gameSetting() {},
 
   gameQuit() {

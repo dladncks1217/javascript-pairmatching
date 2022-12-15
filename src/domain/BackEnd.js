@@ -1,5 +1,6 @@
 class BackEnd {
   #users;
+  #allData;
   #lv1;
   #lv2;
   #lv3;
@@ -31,8 +32,7 @@ class BackEnd {
       }
     });
     this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] = students.slice();
-    console.log(students);
-    return students;
+    return students.slice();
   }
 }
 

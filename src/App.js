@@ -61,9 +61,11 @@ class App {
   }
 
   pairMatch(type, mission) {
-    if (type === WORDS.FRONTEND) this.#frontend.pairMatching(mission);
-    if (type === WORDS.BACKEND) this.#backend.pairMatching(mission);
-    return this.printPairMatchResult();
+    let result;
+    if (type === WORDS.FRONTEND) result = this.#frontend.pairMatching(mission);
+    if (type === WORDS.BACKEND) result = this.#backend.pairMatching(mission);
+
+    return this.printPairMatchResult(result);
   }
 
   reMatchCheck(type, mission) {
@@ -81,7 +83,10 @@ class App {
     });
   }
 
-  printPairMatchResult() {}
+  printPairMatchResult(data) {
+    OutputView.pairMatchResult(data);
+    return this.getUserInputMenu();
+  }
 
   // 페어 조회 기능들
   pairPrint() {}
