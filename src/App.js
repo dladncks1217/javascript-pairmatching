@@ -1,5 +1,6 @@
 const BackEnd = require('./domain/Backend');
 const FrontEnd = require('./domain/Frontend');
+const InputView = require('./UI/InputView');
 const OutputView = require('./UI/OutputView');
 
 class App {
@@ -15,8 +16,19 @@ class App {
     this.#backend = new BackEnd();
   }
 
-  // gameSetting(){
+  showInputMenu() {
+    OutputView.gameStart();
+    return this.getUserInputMenu();
+  }
 
+  // getUserInputMenu(){
+  //   InputView.userSelect((input)=>{
+  //     try{
+
+  //     }catch(error){
+
+  //     }
+  //   })
   // }
 }
 
