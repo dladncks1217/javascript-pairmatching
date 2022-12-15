@@ -19,8 +19,8 @@ class FrontEnd {
   }
 
   hasData(name) {
-    if (this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] === 0) return true;
-    return false;
+    if (this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] === 0) return false;
+    return true;
   }
 
   pairMatching(name) {

@@ -52,10 +52,10 @@ class App {
 
   isMatched(type, mission) {
     if (type === WORDS.FRONTEND) {
-      if (!this.#frontend.hasData(mission)) return this.reMatchCheck(type, mission);
+      if (this.#frontend.hasData(mission)) return this.reMatchCheck(type, mission);
     }
     if (type === WORDS.BACKEND) {
-      if (!this.#backend.hasData(mission)) return this.reMatchCheck(type, mission, '');
+      if (this.#backend.hasData(mission)) return this.reMatchCheck(type, mission, '');
     }
     return this.pairMatch(type, mission);
   }
