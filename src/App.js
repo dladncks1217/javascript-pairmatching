@@ -36,8 +36,17 @@ class App {
   }
 
   // 페어 매칭 기능들
-  pairMatching() {
+  pairInput() {
     OutputView.matchMenu();
+    InputView.inputPairData((input) => {
+      try {
+        verify.pairData();
+        // 페어매칭 시작
+      } catch (error) {
+        OutputView.ErrorPairData();
+        this.pairInput();
+      }
+    });
   }
 
   // 페어 조회 기능들

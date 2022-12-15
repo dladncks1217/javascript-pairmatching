@@ -19,6 +19,10 @@ const OutputView = {
   ErrorSelect() {
     Console.print(ERROR.WRONG_SELECT);
   },
+
+  ErrorPairData() {
+    Console.print(ERROR.WRONG_PAIR_DATA);
+  },
 };
 
 module.exports = OutputView;
