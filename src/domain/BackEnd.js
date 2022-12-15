@@ -1,3 +1,6 @@
+const { LEVEL_DATA } = require('../constants/levelData');
+const shuffleData = require('../utils/shuffleData');
+
 class BackEnd {
   #users;
   #allData;
@@ -17,6 +20,7 @@ class BackEnd {
 
   hasData(name) {
     if (this.#allData[LEVEL_DATA[name][0]][LEVEL_DATA[name][1]] === 0) return true;
+
     return false;
   }
 
